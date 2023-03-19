@@ -1,0 +1,9 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+parts:
+  - caption: PyMC Version
+    chapters:
+      - file: py02-small-worlds-and-large-worlds
