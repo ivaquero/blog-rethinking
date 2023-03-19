@@ -4,6 +4,10 @@
 format: jb-book
 root: README
 parts:
+  # - caption: Coding Conventions
+  #   chapters:
+  #     - file: conventions/latex
+  #     - file: conventions/python
   - caption: PyMC Version
     chapters:
       - file: py02-small-worlds-and-large-worlds
