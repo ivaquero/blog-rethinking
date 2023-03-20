@@ -31,7 +31,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[29], line 1[0m
+Cell [0;32mIn[31], line 1[0m
 [0;32m----> 1[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_line_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mload_ext[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mwatermark[39;49m[38;5;124;43m'[39;49m[43m)[49m
 [1;32m      2[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124mwatermark[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m-n -u -v -iv -w -p pytensor,aeppl,xarray[39m[38;5;124m'[39m)
 

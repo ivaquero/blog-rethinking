@@ -1390,6 +1390,166 @@ document.write(`
 <img alt="_images/dd1b6867eb6696dec99f4c731aaac4dfefb3bb3dccbef660c6f8dde45adb727e.png" src="_images/dd1b6867eb6696dec99f4c731aaac4dfefb3bb3dccbef660c6f8dde45adb727e.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the data</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;d1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;d2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;d3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;d4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># apply the functions and calculate the product</span>
+<span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue2&quot;</span><span class="p">]</span>
+
+<span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>d1</th>
+      <th>d2</th>
+      <th>d3</th>
+      <th>d4</th>
+      <th>blue1</th>
+      <th>white</th>
+      <th>blue2</th>
+      <th>product</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b</td>
+      <td>w</td>
+      <td>w</td>
+      <td>w</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b</td>
+      <td>b</td>
+      <td>w</td>
+      <td>w</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>b</td>
+      <td>b</td>
+      <td>b</td>
+      <td>w</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>b</td>
+      <td>b</td>
+      <td>b</td>
+      <td>b</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;conjecture&quot;</span><span class="p">:</span> <span class="s2">&quot;[&quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;d2&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;d3&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;d4&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Ways to produce [w b w]&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">&quot; * &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">&quot; * &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;blue2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">&quot; = &quot;</span>
+        <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span>
+    <span class="n">t1</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span>
+    <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;simple_outline&quot;</span><span class="p">,</span>
+    <span class="n">colalign</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;center&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌──────────────┬───────────────────────────┐
+│  conjecture  │  Ways to produce [w b w]  │
+├──────────────┼───────────────────────────┤
+│  [w w w w]   │       0 * 4 * 0 = 0       │
+│  [b w w w]   │       1 * 3 * 1 = 3       │
+│  [b b w w]   │       2 * 2 * 2 = 8       │
+│  [b b b w]   │       3 * 1 * 3 = 9       │
+│  [b b b b]   │       4 * 0 * 4 = 0       │
+└──────────────┴───────────────────────────┘
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="combining-other-information">
 <h3>2.1.2 Combining other information<a class="headerlink" href="#combining-other-information" title="Permalink to this headline">#</a></h3>
@@ -1827,10 +1987,10 @@ p 0.67, 0.64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x163133810&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14927f8d0&gt;
 </pre></div>
 </div>
-<img alt="_images/afcde5498623a016b3db160e46dc139e16cbc9a04d4d9234a01cc0730d4f2e52.png" src="_images/afcde5498623a016b3db160e46dc139e16cbc9a04d4d9234a01cc0730d4f2e52.png" />
+<img alt="_images/89900b5b1564b4952a03971a704f2948943447426b8be1849d884870f55a48c6.png" src="_images/89900b5b1564b4952a03971a704f2948943447426b8be1849d884870f55a48c6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1843,7 +2003,7 @@ p 0.67, 0.64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;watermark&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;watermark&#39;</span><span class="p">,</span> <span class="s1">&#39;-n -u -v -iv -w -p pytensor,aeppl,xarray&#39;</span><span class="p">)</span>
 
