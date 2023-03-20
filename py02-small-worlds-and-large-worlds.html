@@ -341,10 +341,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-garden-of-forking-data">2.1 The garden of forking data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-possibilities">2.1.1 Counting possibilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-other-information">2.1.2 Combining other information</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-counts-to-probability">2.1.3 From counts to probability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-1">Code 2.1</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-counts-to-probability">2.1.3 From counts to probability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-model">2.2 Building a model</a><ul class="nav section-nav flex-column">
@@ -352,12 +349,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-the-model">2.3 Components of the model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-2">Code 2.2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-3-and-2-5">Code 2.3 and 2.5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-3">Code 2.3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-6">Code 2.6</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-7">Code 2.7</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-8">Code 2.8</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">2.3.2 Definitions.</a></li>
 </ul>
 </li>
 </ul>
@@ -1539,44 +1531,44 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_7bf2e_row0_col0, #T_7bf2e_row0_col1, #T_7bf2e_row1_col0, #T_7bf2e_row1_col1, #T_7bf2e_row2_col0, #T_7bf2e_row2_col1, #T_7bf2e_row3_col0, #T_7bf2e_row3_col1, #T_7bf2e_row4_col0, #T_7bf2e_row4_col1 {
+#T_2e6b5_row0_col0, #T_2e6b5_row0_col1, #T_2e6b5_row1_col0, #T_2e6b5_row1_col1, #T_2e6b5_row2_col0, #T_2e6b5_row2_col1, #T_2e6b5_row3_col0, #T_2e6b5_row3_col1, #T_2e6b5_row4_col0, #T_2e6b5_row4_col1 {
   text-align: center;
   font-family: Andale Mono;
 }
 </style>
-<table id="T_7bf2e">
+<table id="T_2e6b5">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_7bf2e_level0_col0" class="col_heading level0 col0" >Conjecture</th>
-      <th id="T_7bf2e_level0_col1" class="col_heading level0 col1" >Ways to produce [w b w]</th>
+      <th id="T_2e6b5_level0_col0" class="col_heading level0 col0" >Conjecture</th>
+      <th id="T_2e6b5_level0_col1" class="col_heading level0 col1" >Ways to produce [w b w]</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_7bf2e_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_7bf2e_row0_col0" class="data row0 col0" >[w w w w]</td>
-      <td id="T_7bf2e_row0_col1" class="data row0 col1" >0 * 4 * 0 = 0</td>
+      <th id="T_2e6b5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_2e6b5_row0_col0" class="data row0 col0" >[w w w w]</td>
+      <td id="T_2e6b5_row0_col1" class="data row0 col1" >0 * 4 * 0 = 0</td>
     </tr>
     <tr>
-      <th id="T_7bf2e_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_7bf2e_row1_col0" class="data row1 col0" >[b w w w]</td>
-      <td id="T_7bf2e_row1_col1" class="data row1 col1" >1 * 3 * 1 = 3</td>
+      <th id="T_2e6b5_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_2e6b5_row1_col0" class="data row1 col0" >[b w w w]</td>
+      <td id="T_2e6b5_row1_col1" class="data row1 col1" >1 * 3 * 1 = 3</td>
     </tr>
     <tr>
-      <th id="T_7bf2e_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_7bf2e_row2_col0" class="data row2 col0" >[b b w w]</td>
-      <td id="T_7bf2e_row2_col1" class="data row2 col1" >2 * 2 * 2 = 8</td>
+      <th id="T_2e6b5_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_2e6b5_row2_col0" class="data row2 col0" >[b b w w]</td>
+      <td id="T_2e6b5_row2_col1" class="data row2 col1" >2 * 2 * 2 = 8</td>
     </tr>
     <tr>
-      <th id="T_7bf2e_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_7bf2e_row3_col0" class="data row3 col0" >[b b b w]</td>
-      <td id="T_7bf2e_row3_col1" class="data row3 col1" >3 * 1 * 3 = 9</td>
+      <th id="T_2e6b5_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_2e6b5_row3_col0" class="data row3 col0" >[b b b w]</td>
+      <td id="T_2e6b5_row3_col1" class="data row3 col1" >3 * 1 * 3 = 9</td>
     </tr>
     <tr>
-      <th id="T_7bf2e_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_7bf2e_row4_col0" class="data row4 col0" >[b b b b]</td>
-      <td id="T_7bf2e_row4_col1" class="data row4 col1" >4 * 0 * 4 = 0</td>
+      <th id="T_2e6b5_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_2e6b5_row4_col0" class="data row4 col0" >[b b b b]</td>
+      <td id="T_2e6b5_row4_col1" class="data row4 col1" >4 * 0 * 4 = 0</td>
     </tr>
   </tbody>
 </table>
@@ -1617,56 +1609,56 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_6d6a2_row0_col0, #T_6d6a2_row0_col1, #T_6d6a2_row0_col2, #T_6d6a2_row0_col3, #T_6d6a2_row1_col0, #T_6d6a2_row1_col1, #T_6d6a2_row1_col2, #T_6d6a2_row1_col3, #T_6d6a2_row2_col0, #T_6d6a2_row2_col1, #T_6d6a2_row2_col2, #T_6d6a2_row2_col3, #T_6d6a2_row3_col0, #T_6d6a2_row3_col1, #T_6d6a2_row3_col2, #T_6d6a2_row3_col3, #T_6d6a2_row4_col0, #T_6d6a2_row4_col1, #T_6d6a2_row4_col2, #T_6d6a2_row4_col3 {
+#T_be99d_row0_col0, #T_be99d_row0_col1, #T_be99d_row0_col2, #T_be99d_row0_col3, #T_be99d_row1_col0, #T_be99d_row1_col1, #T_be99d_row1_col2, #T_be99d_row1_col3, #T_be99d_row2_col0, #T_be99d_row2_col1, #T_be99d_row2_col2, #T_be99d_row2_col3, #T_be99d_row3_col0, #T_be99d_row3_col1, #T_be99d_row3_col2, #T_be99d_row3_col3, #T_be99d_row4_col0, #T_be99d_row4_col1, #T_be99d_row4_col2, #T_be99d_row4_col3 {
   text-align: center;
   font-family: Andale Mono;
 }
 </style>
-<table id="T_6d6a2">
+<table id="T_be99d">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_6d6a2_level0_col0" class="col_heading level0 col0" >Conjecture</th>
-      <th id="T_6d6a2_level0_col1" class="col_heading level0 col1" >Ways to produce [b]</th>
-      <th id="T_6d6a2_level0_col2" class="col_heading level0 col2" >Prior counts</th>
-      <th id="T_6d6a2_level0_col3" class="col_heading level0 col3" >New count</th>
+      <th id="T_be99d_level0_col0" class="col_heading level0 col0" >Conjecture</th>
+      <th id="T_be99d_level0_col1" class="col_heading level0 col1" >Ways to produce [b]</th>
+      <th id="T_be99d_level0_col2" class="col_heading level0 col2" >Prior counts</th>
+      <th id="T_be99d_level0_col3" class="col_heading level0 col3" >New count</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_6d6a2_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_6d6a2_row0_col0" class="data row0 col0" >[w w w w]</td>
-      <td id="T_6d6a2_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_6d6a2_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_6d6a2_row0_col3" class="data row0 col3" >0 * 0 = 0</td>
+      <th id="T_be99d_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_be99d_row0_col0" class="data row0 col0" >[w w w w]</td>
+      <td id="T_be99d_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_be99d_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_be99d_row0_col3" class="data row0 col3" >0 * 0 = 0</td>
     </tr>
     <tr>
-      <th id="T_6d6a2_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_6d6a2_row1_col0" class="data row1 col0" >[b w w w]</td>
-      <td id="T_6d6a2_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_6d6a2_row1_col2" class="data row1 col2" >3</td>
-      <td id="T_6d6a2_row1_col3" class="data row1 col3" >1 * 3 = 3</td>
+      <th id="T_be99d_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_be99d_row1_col0" class="data row1 col0" >[b w w w]</td>
+      <td id="T_be99d_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_be99d_row1_col2" class="data row1 col2" >3</td>
+      <td id="T_be99d_row1_col3" class="data row1 col3" >1 * 3 = 3</td>
     </tr>
     <tr>
-      <th id="T_6d6a2_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_6d6a2_row2_col0" class="data row2 col0" >[b b w w]</td>
-      <td id="T_6d6a2_row2_col1" class="data row2 col1" >2</td>
-      <td id="T_6d6a2_row2_col2" class="data row2 col2" >8</td>
-      <td id="T_6d6a2_row2_col3" class="data row2 col3" >2 * 8 = 16</td>
+      <th id="T_be99d_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_be99d_row2_col0" class="data row2 col0" >[b b w w]</td>
+      <td id="T_be99d_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_be99d_row2_col2" class="data row2 col2" >8</td>
+      <td id="T_be99d_row2_col3" class="data row2 col3" >2 * 8 = 16</td>
     </tr>
     <tr>
-      <th id="T_6d6a2_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_6d6a2_row3_col0" class="data row3 col0" >[b b b w]</td>
-      <td id="T_6d6a2_row3_col1" class="data row3 col1" >3</td>
-      <td id="T_6d6a2_row3_col2" class="data row3 col2" >9</td>
-      <td id="T_6d6a2_row3_col3" class="data row3 col3" >3 * 9 = 27</td>
+      <th id="T_be99d_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_be99d_row3_col0" class="data row3 col0" >[b b b w]</td>
+      <td id="T_be99d_row3_col1" class="data row3 col1" >3</td>
+      <td id="T_be99d_row3_col2" class="data row3 col2" >9</td>
+      <td id="T_be99d_row3_col3" class="data row3 col3" >3 * 9 = 27</td>
     </tr>
     <tr>
-      <th id="T_6d6a2_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_6d6a2_row4_col0" class="data row4 col0" >[b b b b]</td>
-      <td id="T_6d6a2_row4_col1" class="data row4 col1" >4</td>
-      <td id="T_6d6a2_row4_col2" class="data row4 col2" >0</td>
-      <td id="T_6d6a2_row4_col3" class="data row4 col3" >4 * 0 = 0</td>
+      <th id="T_be99d_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_be99d_row4_col0" class="data row4 col0" >[b b b b]</td>
+      <td id="T_be99d_row4_col1" class="data row4 col1" >4</td>
+      <td id="T_be99d_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_be99d_row4_col3" class="data row4 col3" >4 * 0 = 0</td>
     </tr>
   </tbody>
 </table>
@@ -1704,56 +1696,56 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_f83c3_row0_col0, #T_f83c3_row0_col1, #T_f83c3_row0_col2, #T_f83c3_row0_col3, #T_f83c3_row1_col0, #T_f83c3_row1_col1, #T_f83c3_row1_col2, #T_f83c3_row1_col3, #T_f83c3_row2_col0, #T_f83c3_row2_col1, #T_f83c3_row2_col2, #T_f83c3_row2_col3, #T_f83c3_row3_col0, #T_f83c3_row3_col1, #T_f83c3_row3_col2, #T_f83c3_row3_col3, #T_f83c3_row4_col0, #T_f83c3_row4_col1, #T_f83c3_row4_col2, #T_f83c3_row4_col3 {
+#T_0e2b7_row0_col0, #T_0e2b7_row0_col1, #T_0e2b7_row0_col2, #T_0e2b7_row0_col3, #T_0e2b7_row1_col0, #T_0e2b7_row1_col1, #T_0e2b7_row1_col2, #T_0e2b7_row1_col3, #T_0e2b7_row2_col0, #T_0e2b7_row2_col1, #T_0e2b7_row2_col2, #T_0e2b7_row2_col3, #T_0e2b7_row3_col0, #T_0e2b7_row3_col1, #T_0e2b7_row3_col2, #T_0e2b7_row3_col3, #T_0e2b7_row4_col0, #T_0e2b7_row4_col1, #T_0e2b7_row4_col2, #T_0e2b7_row4_col3 {
   text-align: center;
   font-family: Andale Mono;
 }
 </style>
-<table id="T_f83c3">
+<table id="T_0e2b7">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_f83c3_level0_col0" class="col_heading level0 col0" >Conjecture</th>
-      <th id="T_f83c3_level0_col1" class="col_heading level0 col1" >Prior counts</th>
-      <th id="T_f83c3_level0_col2" class="col_heading level0 col2" >Factory count</th>
-      <th id="T_f83c3_level0_col3" class="col_heading level0 col3" >New count</th>
+      <th id="T_0e2b7_level0_col0" class="col_heading level0 col0" >Conjecture</th>
+      <th id="T_0e2b7_level0_col1" class="col_heading level0 col1" >Prior counts</th>
+      <th id="T_0e2b7_level0_col2" class="col_heading level0 col2" >Factory count</th>
+      <th id="T_0e2b7_level0_col3" class="col_heading level0 col3" >New count</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f83c3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f83c3_row0_col0" class="data row0 col0" >[w w w w]</td>
-      <td id="T_f83c3_row0_col1" class="data row0 col1" >0</td>
-      <td id="T_f83c3_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_f83c3_row0_col3" class="data row0 col3" >0 * 0 = 0</td>
+      <th id="T_0e2b7_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_0e2b7_row0_col0" class="data row0 col0" >[w w w w]</td>
+      <td id="T_0e2b7_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_0e2b7_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_0e2b7_row0_col3" class="data row0 col3" >0 * 0 = 0</td>
     </tr>
     <tr>
-      <th id="T_f83c3_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_f83c3_row1_col0" class="data row1 col0" >[b w w w]</td>
-      <td id="T_f83c3_row1_col1" class="data row1 col1" >3</td>
-      <td id="T_f83c3_row1_col2" class="data row1 col2" >3</td>
-      <td id="T_f83c3_row1_col3" class="data row1 col3" >3 * 3 = 9</td>
+      <th id="T_0e2b7_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_0e2b7_row1_col0" class="data row1 col0" >[b w w w]</td>
+      <td id="T_0e2b7_row1_col1" class="data row1 col1" >3</td>
+      <td id="T_0e2b7_row1_col2" class="data row1 col2" >3</td>
+      <td id="T_0e2b7_row1_col3" class="data row1 col3" >3 * 3 = 9</td>
     </tr>
     <tr>
-      <th id="T_f83c3_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_f83c3_row2_col0" class="data row2 col0" >[b b w w]</td>
-      <td id="T_f83c3_row2_col1" class="data row2 col1" >16</td>
-      <td id="T_f83c3_row2_col2" class="data row2 col2" >2</td>
-      <td id="T_f83c3_row2_col3" class="data row2 col3" >16 * 2 = 32</td>
+      <th id="T_0e2b7_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_0e2b7_row2_col0" class="data row2 col0" >[b b w w]</td>
+      <td id="T_0e2b7_row2_col1" class="data row2 col1" >16</td>
+      <td id="T_0e2b7_row2_col2" class="data row2 col2" >2</td>
+      <td id="T_0e2b7_row2_col3" class="data row2 col3" >16 * 2 = 32</td>
     </tr>
     <tr>
-      <th id="T_f83c3_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_f83c3_row3_col0" class="data row3 col0" >[b b b w]</td>
-      <td id="T_f83c3_row3_col1" class="data row3 col1" >27</td>
-      <td id="T_f83c3_row3_col2" class="data row3 col2" >1</td>
-      <td id="T_f83c3_row3_col3" class="data row3 col3" >27 * 1 = 27</td>
+      <th id="T_0e2b7_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_0e2b7_row3_col0" class="data row3 col0" >[b b b w]</td>
+      <td id="T_0e2b7_row3_col1" class="data row3 col1" >27</td>
+      <td id="T_0e2b7_row3_col2" class="data row3 col2" >1</td>
+      <td id="T_0e2b7_row3_col3" class="data row3 col3" >27 * 1 = 27</td>
     </tr>
     <tr>
-      <th id="T_f83c3_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_f83c3_row4_col0" class="data row4 col0" >[b b b b]</td>
-      <td id="T_f83c3_row4_col1" class="data row4 col1" >0</td>
-      <td id="T_f83c3_row4_col2" class="data row4 col2" >0</td>
-      <td id="T_f83c3_row4_col3" class="data row4 col3" >0 * 0 = 0</td>
+      <th id="T_0e2b7_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_0e2b7_row4_col0" class="data row4 col0" >[b b b b]</td>
+      <td id="T_0e2b7_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_0e2b7_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_0e2b7_row4_col3" class="data row4 col3" >0 * 0 = 0</td>
     </tr>
   </tbody>
 </table>
@@ -1762,8 +1754,7 @@ document.write(`
 </section>
 <section id="from-counts-to-probability">
 <h3>2.1.3 From counts to probability<a class="headerlink" href="#from-counts-to-probability" title="Permalink to this headline">#</a></h3>
-<section id="code-2-1">
-<h4>Code 2.1<a class="headerlink" href="#code-2-1" title="Permalink to this headline">#</a></h4>
+<p>Code 2.1</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ways</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">])</span>
@@ -1804,62 +1795,61 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_486ef_row0_col0, #T_486ef_row0_col1, #T_486ef_row0_col2, #T_486ef_row0_col3, #T_486ef_row1_col0, #T_486ef_row1_col1, #T_486ef_row1_col2, #T_486ef_row1_col3, #T_486ef_row2_col0, #T_486ef_row2_col1, #T_486ef_row2_col2, #T_486ef_row2_col3, #T_486ef_row3_col0, #T_486ef_row3_col1, #T_486ef_row3_col2, #T_486ef_row3_col3, #T_486ef_row4_col0, #T_486ef_row4_col1, #T_486ef_row4_col2, #T_486ef_row4_col3 {
+#T_7ded4_row0_col0, #T_7ded4_row0_col1, #T_7ded4_row0_col2, #T_7ded4_row0_col3, #T_7ded4_row1_col0, #T_7ded4_row1_col1, #T_7ded4_row1_col2, #T_7ded4_row1_col3, #T_7ded4_row2_col0, #T_7ded4_row2_col1, #T_7ded4_row2_col2, #T_7ded4_row2_col3, #T_7ded4_row3_col0, #T_7ded4_row3_col1, #T_7ded4_row3_col2, #T_7ded4_row3_col3, #T_7ded4_row4_col0, #T_7ded4_row4_col1, #T_7ded4_row4_col2, #T_7ded4_row4_col3 {
   text-align: center;
   font-family: Andale Mono;
 }
 </style>
-<table id="T_486ef">
+<table id="T_7ded4">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_486ef_level0_col0" class="col_heading level0 col0" >Possible composition</th>
-      <th id="T_486ef_level0_col1" class="col_heading level0 col1" >*p*</th>
-      <th id="T_486ef_level0_col2" class="col_heading level0 col2" >Ways to produce data</th>
-      <th id="T_486ef_level0_col3" class="col_heading level0 col3" >Plausibility</th>
+      <th id="T_7ded4_level0_col0" class="col_heading level0 col0" >Possible composition</th>
+      <th id="T_7ded4_level0_col1" class="col_heading level0 col1" >*p*</th>
+      <th id="T_7ded4_level0_col2" class="col_heading level0 col2" >Ways to produce data</th>
+      <th id="T_7ded4_level0_col3" class="col_heading level0 col3" >Plausibility</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_486ef_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_486ef_row0_col0" class="data row0 col0" >[w w w w]</td>
-      <td id="T_486ef_row0_col1" class="data row0 col1" >0.00</td>
-      <td id="T_486ef_row0_col2" class="data row0 col2" >0</td>
-      <td id="T_486ef_row0_col3" class="data row0 col3" >0.00</td>
+      <th id="T_7ded4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_7ded4_row0_col0" class="data row0 col0" >[w w w w]</td>
+      <td id="T_7ded4_row0_col1" class="data row0 col1" >0.00</td>
+      <td id="T_7ded4_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_7ded4_row0_col3" class="data row0 col3" >0.00</td>
     </tr>
     <tr>
-      <th id="T_486ef_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_486ef_row1_col0" class="data row1 col0" >[b w w w]</td>
-      <td id="T_486ef_row1_col1" class="data row1 col1" >0.25</td>
-      <td id="T_486ef_row1_col2" class="data row1 col2" >3</td>
-      <td id="T_486ef_row1_col3" class="data row1 col3" >0.15</td>
+      <th id="T_7ded4_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_7ded4_row1_col0" class="data row1 col0" >[b w w w]</td>
+      <td id="T_7ded4_row1_col1" class="data row1 col1" >0.25</td>
+      <td id="T_7ded4_row1_col2" class="data row1 col2" >3</td>
+      <td id="T_7ded4_row1_col3" class="data row1 col3" >0.15</td>
     </tr>
     <tr>
-      <th id="T_486ef_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_486ef_row2_col0" class="data row2 col0" >[b b w w]</td>
-      <td id="T_486ef_row2_col1" class="data row2 col1" >0.50</td>
-      <td id="T_486ef_row2_col2" class="data row2 col2" >8</td>
-      <td id="T_486ef_row2_col3" class="data row2 col3" >0.40</td>
+      <th id="T_7ded4_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_7ded4_row2_col0" class="data row2 col0" >[b b w w]</td>
+      <td id="T_7ded4_row2_col1" class="data row2 col1" >0.50</td>
+      <td id="T_7ded4_row2_col2" class="data row2 col2" >8</td>
+      <td id="T_7ded4_row2_col3" class="data row2 col3" >0.40</td>
     </tr>
     <tr>
-      <th id="T_486ef_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_486ef_row3_col0" class="data row3 col0" >[b b b w]</td>
-      <td id="T_486ef_row3_col1" class="data row3 col1" >0.75</td>
-      <td id="T_486ef_row3_col2" class="data row3 col2" >9</td>
-      <td id="T_486ef_row3_col3" class="data row3 col3" >0.45</td>
+      <th id="T_7ded4_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_7ded4_row3_col0" class="data row3 col0" >[b b b w]</td>
+      <td id="T_7ded4_row3_col1" class="data row3 col1" >0.75</td>
+      <td id="T_7ded4_row3_col2" class="data row3 col2" >9</td>
+      <td id="T_7ded4_row3_col3" class="data row3 col3" >0.45</td>
     </tr>
     <tr>
-      <th id="T_486ef_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_486ef_row4_col0" class="data row4 col0" >[b b b b]</td>
-      <td id="T_486ef_row4_col1" class="data row4 col1" >1.00</td>
-      <td id="T_486ef_row4_col2" class="data row4 col2" >0</td>
-      <td id="T_486ef_row4_col3" class="data row4 col3" >0.00</td>
+      <th id="T_7ded4_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_7ded4_row4_col0" class="data row4 col0" >[b b b b]</td>
+      <td id="T_7ded4_row4_col1" class="data row4 col1" >1.00</td>
+      <td id="T_7ded4_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_7ded4_row4_col3" class="data row4 col3" >0.00</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-</section>
 </section>
 </section>
 <section id="building-a-model">
@@ -2631,8 +2621,9 @@ document.write(`
 </section>
 <section id="components-of-the-model">
 <h2>2.3 Components of the model<a class="headerlink" href="#components-of-the-model" title="Permalink to this headline">#</a></h2>
-<section id="code-2-2">
-<h3>Code 2.2<a class="headerlink" href="#code-2-2" title="Permalink to this headline">#</a></h3>
+<section id="definitions">
+<h3>2.3.2 Definitions.<a class="headerlink" href="#definitions" title="Permalink to this headline">#</a></h3>
+<p>Code 2.2</p>
 <div class="math notranslate nohighlight">
 \[Pr(w \mid n, p) =  \frac{n!}{w!(n − w)!} p^w (1 − p)^{n−w}\]</div>
 <p>The probability of observing six W’s in nine tosses — below a value of <span class="math notranslate nohighlight">\(p=0.5\)</span>.</p>
@@ -2648,9 +2639,7 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="code-2-3-and-2-5">
-<h3>Code 2.3 and 2.5<a class="headerlink" href="#code-2-3-and-2-5" title="Permalink to this headline">#</a></h3>
+<p>Code 2.3 and 2.5</p>
 <p>Computing the posterior using a grid approximation.</p>
 <p>In the book, the following code is not inside a function, but this way it is easier to play with different parameters.</p>
 <div class="cell docutils container">
@@ -2732,9 +2721,7 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="code-2-3">
-<h3>Code 2.3<a class="headerlink" href="#code-2-3" title="Permalink to this headline">#</a></h3>
+<p>Code 2.3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span>
@@ -2793,9 +2780,7 @@ document.write(`
 <img alt="_images/e0c1c209b857fa97e1fb65c8cc5ba6cbef7d77babad2551b0733efeb345d90dd.png" src="_images/e0c1c209b857fa97e1fb65c8cc5ba6cbef7d77babad2551b0733efeb345d90dd.png" />
 </div>
 </div>
-</section>
-<section id="code-2-6">
-<h3>Code 2.6<a class="headerlink" href="#code-2-6" title="Permalink to this headline">#</a></h3>
+<p>Code 2.6</p>
 <p>Computing the posterior using the quadratic approximation (quad).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2879,9 +2864,7 @@ p 0.67, 0.64
 </div>
 </div>
 </div>
-</section>
-<section id="code-2-7">
-<h3>Code 2.7<a class="headerlink" href="#code-2-7" title="Permalink to this headline">#</a></h3>
+<p>Code 2.7</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analytical calculation</span>
@@ -3017,9 +3000,7 @@ p 0.67, 0.64
 <img alt="_images/39553cc3db1aaa6ce07dcdf6f8bbb40ee332151497246e0e31fbff16a700dfb1.png" src="_images/39553cc3db1aaa6ce07dcdf6f8bbb40ee332151497246e0e31fbff16a700dfb1.png" />
 </div>
 </div>
-</section>
-<section id="code-2-8">
-<h3>Code 2.8<a class="headerlink" href="#code-2-8" title="Permalink to this headline">#</a></h3>
+<p>Code 2.8</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -3051,10 +3032,10 @@ p 0.67, 0.64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14bf9b490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1550d9ad0&gt;
 </pre></div>
 </div>
-<img alt="_images/d3284deb09c61a901d6c6d285d05afdf119893badb1a40106983f50a645bc161.png" src="_images/d3284deb09c61a901d6c6d285d05afdf119893badb1a40106983f50a645bc161.png" />
+<img alt="_images/d3199a28ae5a93becc0a38cdbf5a4010e4175352f5d806746fb9960e62eeaf56.png" src="_images/d3199a28ae5a93becc0a38cdbf5a4010e4175352f5d806746fb9960e62eeaf56.png" />
 </div>
 </div>
 </section>
@@ -3116,10 +3097,7 @@ p 0.67, 0.64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-garden-of-forking-data">2.1 The garden of forking data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-possibilities">2.1.1 Counting possibilities</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-other-information">2.1.2 Combining other information</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-counts-to-probability">2.1.3 From counts to probability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-1">Code 2.1</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-counts-to-probability">2.1.3 From counts to probability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-model">2.2 Building a model</a><ul class="nav section-nav flex-column">
@@ -3127,12 +3105,7 @@ p 0.67, 0.64
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-the-model">2.3 Components of the model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-2">Code 2.2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-3-and-2-5">Code 2.3 and 2.5</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-3">Code 2.3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-6">Code 2.6</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-7">Code 2.7</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-2-8">Code 2.8</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">2.3.2 Definitions.</a></li>
 </ul>
 </li>
 </ul>
