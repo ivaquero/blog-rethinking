@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3 Sampling the Imaginary &#8212; Statistical Rethinking Reimplementation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py03-sampling-the-imaginary';</script>
+    <link rel="canonical" href="https://ivaquero.github.io/blog-rethinking/py03-sampling-the-imaginary.html" />
+    <link rel="shortcut icon" href="_static/doge.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2 Small Worlds and Large Worlds" href="py02-small-worlds-and-large-worlds.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/doge.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/doge.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Statistical Rethinking Reimplementation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">PyMC Version</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="py02-small-worlds-and-large-worlds.html">2 Small Worlds and Large Worlds</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3 Sampling the Imaginary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/py03-sampling-the-imaginary.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py03-sampling-the-imaginary.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3 Sampling the Imaginary</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-1">Code 3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-2-3-5">Code 3.2 - 3.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-6">Code 3.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-7">Code 3.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-8">Code 3.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-9">Code 3.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-10">Code 3.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-11">Code 3.11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-12">Code 3.12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-13">Code 3.13</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-14">Code 3.14</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-15">Code 3.15</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-16">Code 3.16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-17">Code 3.17</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-18-and-3-19">Code 3.18 and 3.19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-20">Code 3.20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-21">Code 3.21</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-22">Code 3.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-23">Code 3.23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-24-3-25-and-3-26">Code 3.24, 3.25 and 3.26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-27">Code 3.27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-28">Code 3.28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-30">Code 3.30</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sampling-the-imaginary">
+<h1>3 Sampling the Imaginary<a class="headerlink" href="#sampling-the-imaginary" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">8927</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="code-3-1">
+<h2>Code 3.1<a class="headerlink" href="#code-3-1" title="Permalink to this headline">#</a></h2>
+<div class="math notranslate nohighlight">
+\[Pr(vampire|positive) = \frac{Pr(positive|vampire) Pr(vampire)} {Pr(positive)}\]</div>
+<div class="math notranslate nohighlight">
+\[Pr(positive) = Pr(positive|vampire) Pr(vampire) + Pr(positive|mortal) (1 − Pr(vampire))\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PrPV</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">PrPM</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">PrV</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">PrP</span> <span class="o">=</span> <span class="n">PrPV</span> <span class="o">*</span> <span class="n">PrV</span> <span class="o">+</span> <span class="n">PrPM</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">PrV</span><span class="p">)</span>
+<span class="n">PrVP</span> <span class="o">=</span> <span class="n">PrPV</span> <span class="o">*</span> <span class="n">PrV</span> <span class="o">/</span> <span class="n">PrP</span>
+<span class="n">PrVP</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08683729433272395
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-2-3-5">
+<h2>Code 3.2 - 3.5<a class="headerlink" href="#code-3-2-3-5" title="Permalink to this headline">#</a></h2>
+<p>We are going to use the same function we use on chapter 2 (code 2.3)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">uniform_prior</span><span class="p">(</span><span class="n">grid_points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns Uniform prior density</span>
+
+<span class="sd">            Parameters:</span>
+<span class="sd">                grid_points (numpy.array): Array of prior values</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                density (numpy.array): Uniform density of prior values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">grid_points</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">truncated_prior</span><span class="p">(</span><span class="n">grid_points</span><span class="p">,</span> <span class="n">trunc_point</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns Truncated prior density</span>
+
+<span class="sd">            Parameters:</span>
+<span class="sd">                grid_points (numpy.array): Array of prior values</span>
+<span class="sd">                trunc_point (double): Value where the prior is truncated</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                density (numpy.array): Truncated density of prior values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_points</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">trunc_point</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">double_exp_prior</span><span class="p">(</span><span class="n">grid_points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns Double Exponential prior density</span>
+
+<span class="sd">            Parameters:</span>
+<span class="sd">                grid_points (numpy.array): Array of prior values</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                density (numpy.array): Double Exponential density of prior values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_points</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_post_grid_approx</span><span class="p">(</span><span class="n">prior_func</span><span class="p">,</span> <span class="n">grid_points</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">success</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">tosses</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the grid approximation of posterior distribution with binomial likelihood.</span>
+
+<span class="sd">            Parameters:</span>
+<span class="sd">                    prior_func (function): A function that returns the likelihood of the prior</span>
+<span class="sd">                    grid_points (int): Number of points in the prior grid</span>
+<span class="sd">                    successes (int): Number of successes</span>
+<span class="sd">                    tosses (int): number of tosses</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                    p_grid (numpy.array): Array of prior values</span>
+<span class="sd">                    posterior (numpy.array): Likelihood (density) of prior values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># define grid</span>
+    <span class="n">p_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_points</span><span class="p">)</span>
+
+    <span class="c1"># define prior</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">prior_func</span><span class="p">(</span><span class="n">grid_points</span><span class="p">)</span>
+
+    <span class="c1"># compute likelihood at each point in the grid</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">tosses</span><span class="p">,</span> <span class="n">p_grid</span><span class="p">)</span>
+
+    <span class="c1"># compute product of likelihood and prior</span>
+    <span class="n">unstd_posterior</span> <span class="o">=</span> <span class="n">likelihood</span> <span class="o">*</span> <span class="n">prior</span>
+
+    <span class="c1"># standardize the posterior, so it sums to 1</span>
+    <span class="n">posterior</span> <span class="o">=</span> <span class="n">unstd_posterior</span> <span class="o">/</span> <span class="n">unstd_posterior</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">p_grid</span><span class="p">,</span> <span class="n">posterior</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_grid</span><span class="p">,</span> <span class="n">posterior</span> <span class="o">=</span> <span class="n">binom_post_grid_approx</span><span class="p">(</span>
+    <span class="n">uniform_prior</span><span class="p">,</span> <span class="n">grid_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">success</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">tosses</span><span class="o">=</span><span class="mi">9</span>
+<span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;sample number&quot;</span><span class="p">)</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;proportion water (p)&quot;</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;proportion water (p)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;density&#39;)
+</pre></div>
+</div>
+<img alt="_images/e5af4d69fa142aa422a72b80a71f7cfa19b5ab0501a0ec6fccd26e08b01c1484.png" src="_images/e5af4d69fa142aa422a72b80a71f7cfa19b5ab0501a0ec6fccd26e08b01c1484.png" />
+</div>
+</div>
+</section>
+<section id="code-3-6">
+<h2>Code 3.6<a class="headerlink" href="#code-3-6" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="n">p_grid</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17183313110747472
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-7">
+<h2>Code 3.7<a class="headerlink" href="#code-3-7" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">samples</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1699
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-8">
+<h2>Code 3.8<a class="headerlink" href="#code-3-8" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">((</span><span class="n">samples</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">samples</span> <span class="o">&lt;</span> <span class="mf">0.75</span><span class="p">))</span> <span class="o">/</span> <span class="mf">1e4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6089
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-9">
+<h2>Code 3.9<a class="headerlink" href="#code-3-9" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7676767676767677
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-10">
+<h2>Code 3.10<a class="headerlink" href="#code-3-10" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.45454545, 0.81818182])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-11">
+<h2>Code 3.11<a class="headerlink" href="#code-3-11" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_grid</span><span class="p">,</span> <span class="n">posterior</span> <span class="o">=</span> <span class="n">binom_post_grid_approx</span><span class="p">(</span>
+    <span class="n">uniform_prior</span><span class="p">,</span> <span class="n">grid_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">success</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tosses</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">posterior</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;proportion water (p)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Density&#39;)
+</pre></div>
+</div>
+<img alt="_images/680e028c694e1a1a5fa0bff74623ff40feed46af7f93ac0f1a6b4c31309b9da5.png" src="_images/680e028c694e1a1a5fa0bff74623ff40feed46af7f93ac0f1a6b4c31309b9da5.png" />
+</div>
+</div>
+</section>
+<section id="code-3-12">
+<h2>Code 3.12<a class="headerlink" href="#code-3-12" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.70707071, 0.93939394])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-13">
+<h2>Code 3.13<a class="headerlink" href="#code-3-13" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">az</span><span class="o">.</span><span class="n">hdi</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.84848485, 1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-14">
+<h2>Code 3.14<a class="headerlink" href="#code-3-14" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_grid</span><span class="p">[</span><span class="n">posterior</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">posterior</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-15">
+<h2>Code 3.15<a class="headerlink" href="#code-3-15" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">samples</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/py/n14256yd5r5ddms88x9bvsv40000gn/T/ipykernel_52713/3920105227.py:1: FutureWarning: Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
+  stats.mode(samples)[0]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.96969697])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-16">
+<h2>Code 3.16<a class="headerlink" href="#code-3-16" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">samples</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.8039616161616162, 0.8484848484848485)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-17">
+<h2>Code 3.17<a class="headerlink" href="#code-3-17" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">posterior</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">p_grid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31626874808692995
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-18-and-3-19">
+<h2>Code 3.18 and 3.19<a class="headerlink" href="#code-3-18-and-3-19" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">posterior</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">p_grid</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">p_grid</span><span class="p">]</span>
+<span class="n">p_grid</span><span class="p">[</span><span class="n">loss</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">loss</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.84848485])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-20">
+<h2>Code 3.20<a class="headerlink" href="#code-3-20" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.09, 0.42, 0.49])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-21">
+<h2>Code 3.21<a class="headerlink" href="#code-3-21" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-22">
+<h2>Code 3.22<a class="headerlink" href="#code-3-22" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 2, 1, 1, 1, 2, 2, 0, 2, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-23">
+<h2>Code 3.23<a class="headerlink" href="#code-3-23" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_w</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">))</span>
+<span class="p">[(</span><span class="n">dummy_w</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.09088, 0.42142, 0.4877]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-24-3-25-and-3-26">
+<h2>Code 3.24, 3.25 and 3.26<a class="headerlink" href="#code-3-24-3-25-and-3-26" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_w</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">))</span>
+<span class="c1"># dummy_w = stats.binom.rvs(n=9, p=0.6, size=int(1e4))</span>
+<span class="c1"># dummy_w = stats.binom.rvs(n=9, p=samples)</span>
+<span class="n">bar_width</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">dummy_w</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="o">-</span> <span class="n">bar_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bar_width</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">9.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;dummy water count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequency&#39;)
+</pre></div>
+</div>
+<img alt="_images/c943cfa7d2876883e14f02ef45fee7638cd2d247d0a36408fe6dbcd81f73294f.png" src="_images/c943cfa7d2876883e14f02ef45fee7638cd2d247d0a36408fe6dbcd81f73294f.png" />
+</div>
+</div>
+</section>
+<section id="code-3-27">
+<h2>Code 3.27<a class="headerlink" href="#code-3-27" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_grid</span><span class="p">,</span> <span class="n">posterior</span> <span class="o">=</span> <span class="n">binom_post_grid_approx</span><span class="p">(</span>
+    <span class="n">uniform_prior</span><span class="p">,</span> <span class="n">grid_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">success</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">tosses</span><span class="o">=</span><span class="mi">9</span>
+<span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">posterior</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-28">
+<h2>Code 3.28<a class="headerlink" href="#code-3-28" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fmt: off</span>
+<span class="n">birth1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">birth2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="c1"># fmt: on</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-3-30">
+<h2>Code 3.30<a class="headerlink" href="#code-3-30" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">birth1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">birth2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Line magic function `%watermark` not found.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="py02-small-worlds-and-large-worlds.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2 Small Worlds and Large Worlds</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-1">Code 3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-2-3-5">Code 3.2 - 3.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-6">Code 3.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-7">Code 3.7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-8">Code 3.8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-9">Code 3.9</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-10">Code 3.10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-11">Code 3.11</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-12">Code 3.12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-13">Code 3.13</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-14">Code 3.14</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-15">Code 3.15</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-16">Code 3.16</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-17">Code 3.17</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-18-and-3-19">Code 3.18 and 3.19</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-20">Code 3.20</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-21">Code 3.21</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-22">Code 3.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-23">Code 3.23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-24-3-25-and-3-26">Code 3.24, 3.25 and 3.26</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-27">Code 3.27</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-28">Code 3.28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-30">Code 3.30</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ivaquero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
