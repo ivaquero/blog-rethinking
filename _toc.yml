@@ -11,4 +11,4 @@ parts:
   - caption: PyMC Version
     chapters:
       - file: py02-small-worlds-and-large-worlds
-      - file: py03-geocentric-models
+      - file: py03-sampling-the-imaginary
