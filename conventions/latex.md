@@ -65,7 +65,7 @@ $$
 $$
 \begin{cases}
 y = x^2 + 2*x & x > 0 \\
-y = x^3 + x & x ≤ 0
+y = x^3 + x & x ⩽ 0
 \end{cases}
 $$
 
@@ -73,7 +73,7 @@ $$
 $$
 \begin{cases}
 y = x^2 + 2*x & x > 0 \\
-y = x^3 + x & x ≤ 0
+y = x^3 + x & x ⩽ 0
 \end{cases}
 $$
 ```
