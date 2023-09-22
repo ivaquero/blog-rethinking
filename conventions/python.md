@@ -68,17 +68,15 @@ ax.set_xlabel('x')
 ax.set_ylabel('y')
 ```
 
-- Prefer `sns.despine()` is prefered to `ax.spines[*].set_visible()`
+- Prefer `ax.spines[list].set_visible()` is prefered to using `ax.spines[*].set_visible()` line by line
 
 ```python
 # good
-sns.despine()
+ax.spines["top", "bottom"].set_visible(False)
 
 # bad
 ax.spines["top"].set_visible(False)
 ax.spines["bottom"].set_visible(False)
-ax.spines["right"].set_visible(False)
-ax.spines["left"].set_visible(False)
 ```
 
 ## 3. pandas
