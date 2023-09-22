@@ -43,7 +43,7 @@ plt.hist(x2, y2)
 
 ```python
 # good
-_, ax = plt.subplots(2, 2, figsize=[12,8],constrained_layout=True)
+_, ax = plt.subplots(2, 2, figsize=[12,8], constrained_layout=True)
 
 for ax, x, y in zip(axes.flatten(), xs, ys):
   ax.plot(x, y)
@@ -68,7 +68,7 @@ ax.set_xlabel('x')
 ax.set_ylabel('y')
 ```
 
-- Prefer `ax.spines[list].set_visible()` is prefered to using `ax.spines[*].set_visible()` line by line
+- `ax.spines[*].set_visible()` with list is prefered to line-by-line `ax.spines[*].set_visible()`
 
 ```python
 # good
