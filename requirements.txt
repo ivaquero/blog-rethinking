@@ -1,0 +1,10 @@
+arviz
+causalgraphicalmodels
+jupyter-book
+matplotlib
+numpy
+pandas
+pymc
+scipy
+sympy
+tabulate
