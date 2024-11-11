@@ -30,7 +30,7 @@
         "TID",
     ]
     fixable = ["ALL"]
-    ignore = ["F403", "F405"]
+    ignore = ["E741", "F403", "F405"]
     unfixable = []
 
 [tool.ruff.lint.isort]
